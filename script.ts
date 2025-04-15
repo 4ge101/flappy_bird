@@ -1,14 +1,19 @@
 // Making start button hover sound 
 
-const button = document.getElementById("soundBtn") as HTMLButtonElement;
-const sound = document.getElementById("hoverSound") as HTMLAudioElement;
+const button = document.querySelector("#sound-btn") as HTMLButtonElement;
+const sound = document.querySelector("#btn-hover-sound") as HTMLAudioElement;
 
 if (button && sound) {
-  button.addEventListener("mouseenter", () => {
-    sound.currentTime = 0; // Rewind to the beginning
-    sound.play();
-  });
+    button.addEventListener("mouseenter", () => {
+        sound.currentTime = 0; // Rewind to the beginning
+        sound.play();
+    });
 }
+
+// bird and falling sound
+
+const birdSound = document.querySelector("#bird-sound") as HTMLAudioElement;
+const fallingSound = document.querySelector("#falling-sound") as HTMLAudioElement;
 
 // Main game logic
 
@@ -55,6 +60,10 @@ gameLoop();
 document.addEventListener('click', () => {
     if (gameOver) return;
     velocity = jumpForce;
+
+    // play bird jump sound
+    birdSound.currentTime = 0;
+    birdSound.play();
 });
 
 // Piller dublicate
@@ -136,9 +145,17 @@ function checkCollision(birdRect: DOMRect, pillarRect: DOMRect): boolean {
 
 // Game over function if it touch ground or piller
 function endGame() {
+    if (gameOver) return;
     gameOver = true;
-    alert("Game Over! Click OK to restart.");
-    window.location.reload();
+
+    // play falling sound
+    fallingSound.currentTime = 0;
+    fallingSound.play();
+
+    setTimeout(() => {
+        alert("Game Over! Click OK to restart.");
+        window.location.reload();
+    }, 100);
 }
 
 // Create pillars in every 2s
