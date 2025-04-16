@@ -221,7 +221,7 @@
 }
 
 .game-lose-container {
-    display: flex;
+    display: none;
     justify-content: center;
     position: absolute;
     left: 0;
@@ -233,6 +233,7 @@
     border: 2px solid var(--black-color);
     border-radius: 4px;
     margin: 50px 50px;
+    z-index: 999;
 }
 
 .lose-title h1 {
