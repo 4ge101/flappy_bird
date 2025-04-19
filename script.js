@@ -109,7 +109,7 @@ function createPillars() {
     gameContainer.appendChild(piller2);
     movePillars(piller1, piller2);
 }
-// Move pillars + score + making if bird touch piller or ground game will end
+// move pillars + score + making if bird touch piller or ground game will end
 function movePillars(p1, p2) {
     var position = window.innerWidth;
     var scored = false;
@@ -125,6 +125,7 @@ function movePillars(p1, p2) {
         if (checkCollision(birdRect, p1Rect) || checkCollision(birdRect, p2Rect)) {
             endGame();
         }
+        // adding score and every 5 point piller speed increase
         if (!scored && position + p1.offsetWidth < birdRect.left) {
             scored = true;
             score++;
